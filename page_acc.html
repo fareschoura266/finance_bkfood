@@ -12,32 +12,44 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
+        /* ========== RESET UNIVERSEL ANTI-SCROLLBAR ========== */
+        *, *::before, *::after {
             box-sizing: border-box;
         }
 
-        /* Canvas Power BI 16:9 Split-Screen Exact Dimensions */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Supprime TOUTE scrollbar */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1b2a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ========== CANVAS POWER BI FLUIDE 100% ========== */
         .powerbi-container {
-            width: 1280px;
-            height: 720px;
+            /* ✅ Prend tout l'espace disponible (iframe Power BI) */
+            width: 100vw;
+            height: 100vh;
             max-width: 100%;
-            border-radius: 12px;
+            max-height: 100%;
+            /* ✅ Pas d'arrondi ni de marge pour coller aux bords */
+            border-radius: 0;
+            margin: 0;
             overflow: hidden;
-            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8);
             display: flex;
             position: relative;
             background-color: #0d1b2a;
         }
 
-        /* Palette de Couleurs Métier BK FOOD */
+        /* ========== PALETTE DE COULEURS MÉTIER BK FOOD ========== */
         .bg-navy-dark { background-color: #0a1322; }
         .bg-navy-card { background-color: #0f1c30; }
         .bg-gold { background-color: #e5b338; }
@@ -45,7 +57,7 @@
         .border-gold { border-color: #e5b338; }
         .border-gold-subtle { border-color: rgba(229, 179, 56, 0.3); }
 
-        /* Motif Quadrillage Subtil pour la partie droite */
+        /* ========== MOTIF QUADRILLAGE SUBTIL ========== */
         .grid-bg {
             background-color: #f8fafc;
             background-image: 
@@ -54,7 +66,7 @@
             background-size: 24px 24px;
         }
 
-        /* Effet de survol sur la carte active */
+        /* ========== EFFET DE SURVOL SUR LA CARTE ACTIVE ========== */
         .card-active-hover {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -63,7 +75,7 @@
             box-shadow: 0 12px 25px -5px rgba(10, 19, 34, 0.4);
         }
 
-        /* Bouton Or stylisé Power BI */
+        /* ========== BOUTON OR STYLISÉ POWER BI ========== */
         .btn-gold-pbi {
             background: linear-gradient(135deg, #e5b338 0%, #c99824 100%);
             transition: all 0.2s ease;
@@ -73,25 +85,32 @@
             box-shadow: 0 4px 15px rgba(229, 179, 56, 0.4);
         }
 
-        /* Fond semi-transparent pour le panneau gauche */
+        /* ========== FOND SEMI-TRANSPARENT PANNEAU GAUCHE ========== */
         .left-panel-transparent {
             background-color: rgba(10, 19, 34, 0.55);
+        }
+
+        /* ========== ANTI-DÉBORDEMENT INTERNE ========== */
+        .powerbi-container > div {
+            max-height: 100%;
+            overflow: hidden;
         }
     </style>
 </head>
 <body class="select-none">
 
-    <!-- CONTAINER PRINCIPAL DU DAHBOARD POWER BI 16:9 -->
+    <!-- CONTAINER PRINCIPAL DU DASHBOARD POWER BI -->
     <div class="powerbi-container">
 
         <!-- ========================================== -->
         <!-- 1. PANNEAU GAUCHE : STRATÉGIQUE (40% WIDTH) -->
         <!-- ========================================== -->
-        <div class="w-[40%] h-full relative flex flex-col justify-between p-8 left-panel-transparent text-white border-r-2 border-gold/40 overflow-hidden">
+        <div class="w-[40%] h-full relative flex flex-col justify-between p-6 left-panel-transparent text-white border-r-2 border-gold/40 overflow-hidden">
             
             <!-- IMAGE DE FOND PERSONNALISÉE AVEC TRANSPARENCE -->
             <div class="absolute inset-0 z-0">
-                <img src="images\micheile-henderson-ZVprbBmT8QA-unsplash.jpg" 
+                <!-- ✅ CHEMIN CORRIGÉ : slashes / au lieu d'antislashs \ -->
+                <img src="images/micheile-henderson-ZVprbBmT8QA-unsplash.jpg" 
                      alt="Arrière-plan BK Food" 
                      class="w-full h-full object-cover opacity-60">
                 <!-- Overlay Dégradé Sombre allégé pour laisser respirer l'image -->
@@ -104,12 +123,12 @@
             <div class="relative z-10 flex items-center justify-between">
                 <!-- LOGO ENTREPRISE BK FOOD (AGRANDI) -->
                 <div class="flex items-center space-x-4">
-                    <div class="w-30 h-28 rounded-2xl bg-white/10 backdrop-blur-md border-2 border-gold/50 flex items-center justify-center p-2 shadow-2xl">
-                        <img src="images\logo_entreprise.png" 
+                    <div class="w-28 h-28 rounded-2xl bg-white/10 backdrop-blur-md border-2 border-gold/50 flex items-center justify-center p-2 shadow-2xl">
+                        <!-- ✅ CHEMIN CORRIGÉ : slashes / au lieu d'antislashs \ -->
+                        <img src="images/logo_entreprise.png" 
                              alt="Logo BK FOOD" 
                              class="w-full h-full object-contain">
                     </div>
-                   
                 </div>
 
                 <!-- BADGE BI HUB -->
@@ -120,7 +139,7 @@
             </div>
 
             <!-- CONTENU CENTRAL PANNEAU GAUCHE -->
-            <div class="relative z-10 my-auto space-y-6 pt-6">
+            <div class="relative z-10 my-auto space-y-5 pt-4">
                 <!-- Badge Produit / Domaine -->
                 <div class="inline-flex items-center space-x-2 bg-navy-card/80 border border-gold-subtle px-3 py-1 rounded-full text-[11px] font-semibold text-gold uppercase tracking-wider backdrop-blur-sm">
                     <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
@@ -173,7 +192,7 @@
         <!-- ========================================== -->
         <!-- 2. PANNEAU DROIT : MODULES (60% WIDTH)    -->
         <!-- ========================================== -->
-        <div class="w-[60%] h-full grid-bg flex flex-col justify-between p-7 text-slate-800 relative">
+        <div class="w-[60%] h-full grid-bg flex flex-col justify-between p-6 text-slate-800 relative overflow-hidden">
 
             <!-- EN-TÊTE DU PANNEAU DROIT : STATUS & WORKSPACE -->
             <div class="flex items-center justify-between">
@@ -194,7 +213,7 @@
             </div>
 
             <!-- TITRE DE LA SECTION -->
-            <div class="mt-6 mb-2 flex items-end justify-between">
+            <div class="mt-4 mb-2 flex items-end justify-between">
                 <div>
                     <h2 class="text-xl font-extrabold text-navy-dark tracking-tight flex items-center space-x-2">
                         <span>Modules d'Analyse</span>
