@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BK FOOD - Portail Power BI Split-Screen</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Canvas Power BI 16:9 Split-Screen Exact Dimensions */
+        .powerbi-container {
+            width: 1280px;
+            height: 720px;
+            max-width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8);
+            display: flex;
+            position: relative;
+            background-color: #0d1b2a;
+        }
+
+        /* Palette de Couleurs Métier BK FOOD */
+        .bg-navy-dark { background-color: #0a1322; }
+        .bg-navy-card { background-color: #0f1c30; }
+        .bg-gold { background-color: #e5b338; }
+        .text-gold { color: #e5b338; }
+        .border-gold { border-color: #e5b338; }
+        .border-gold-subtle { border-color: rgba(229, 179, 56, 0.3); }
+
+        /* Motif Quadrillage Subtil pour la partie droite */
+        .grid-bg {
+            background-color: #f8fafc;
+            background-image: 
+                linear-gradient(to right, rgba(226, 232, 240, 0.5) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(226, 232, 240, 0.5) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        /* Effet de survol sur la carte active */
+        .card-active-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-active-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px -5px rgba(10, 19, 34, 0.4);
+        }
+
+        /* Bouton Or stylisé Power BI */
+        .btn-gold-pbi {
+            background: linear-gradient(135deg, #e5b338 0%, #c99824 100%);
+            transition: all 0.2s ease;
+        }
+        .btn-gold-pbi:hover {
+            background: linear-gradient(135deg, #f0c24b 0%, #d8a42a 100%);
+            box-shadow: 0 4px 15px rgba(229, 179, 56, 0.4);
+        }
+
+        /* Fond semi-transparent pour le panneau gauche */
+        .left-panel-transparent {
+            background-color: rgba(10, 19, 34, 0.55);
+        }
+    </style>
+</head>
+<body class="select-none">
+
+    <!-- CONTAINER PRINCIPAL DU DAHBOARD POWER BI 16:9 -->
+    <div class="powerbi-container">
+
+        <!-- ========================================== -->
+        <!-- 1. PANNEAU GAUCHE : STRATÉGIQUE (40% WIDTH) -->
+        <!-- ========================================== -->
+        <div class="w-[40%] h-full relative flex flex-col justify-between p-8 left-panel-transparent text-white border-r-2 border-gold/40 overflow-hidden">
+            
+            <!-- IMAGE DE FOND PERSONNALISÉE AVEC TRANSPARENCE -->
+            <div class="absolute inset-0 z-0">
+                <img src="C:\Users\chofar\Downloads\micheile-henderson-ZVprbBmT8QA-unsplash.jpg" 
+                     alt="Arrière-plan BK Food" 
+                     class="w-full h-full object-cover opacity-60">
+                <!-- Overlay Dégradé Sombre allégé pour laisser respirer l'image -->
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0a1322]/95 via-[#0a1322]/50 to-[#0a1322]/20"></div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- LOGO ENTREPRISE + BADGE BI HUB -->
+            <!-- ========================================== -->
+            <div class="relative z-10 flex items-center justify-between">
+                <!-- LOGO ENTREPRISE BK FOOD (AGRANDI) -->
+                <div class="flex items-center space-x-4">
+                    <div class="w-30 h-28 rounded-2xl bg-white/10 backdrop-blur-md border-2 border-gold/50 flex items-center justify-center p-2 shadow-2xl">
+                        <img src="C:\Users\chofar\Desktop\parc-bkfood\public\images\logo_entreprise.png" 
+                             alt="Logo BK FOOD" 
+                             class="w-full h-full object-contain">
+                    </div>
+                   
+                </div>
+
+                <!-- BADGE BI HUB -->
+                <div class="border border-gold text-gold text-xs font-bold px-3.5 py-1.5 rounded-lg tracking-widest bg-black/40 backdrop-blur-md shadow-sm flex items-center space-x-2">
+                    <span class="w-2 h-2 rounded-full bg-gold animate-ping"></span>
+                    <span>BI HUB</span>
+                </div>
+            </div>
+
+            <!-- CONTENU CENTRAL PANNEAU GAUCHE -->
+            <div class="relative z-10 my-auto space-y-6 pt-6">
+                <!-- Badge Produit / Domaine -->
+                <div class="inline-flex items-center space-x-2 bg-navy-card/80 border border-gold-subtle px-3 py-1 rounded-full text-[11px] font-semibold text-gold uppercase tracking-wider backdrop-blur-sm">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+                    <span>Conserverie de Thon</span>
+                </div>
+
+                <!-- Titre Principal -->
+                <div class="space-y-1">
+                    <h1 class="text-3xl font-extrabold text-white leading-tight drop-shadow-lg">
+                        Portail Stratégique &
+                    </h1>
+                    <h2 class="text-3xl font-extrabold text-gold leading-tight drop-shadow-lg">
+                        Pilotage Financier
+                    </h2>
+                </div>
+
+                <!-- Description -->
+                <p class="text-xs text-slate-200 leading-relaxed font-normal max-w-sm drop-shadow-md">
+                    Plateforme décisionnelle centralisée dédiée à la consolidation commerciale, au suivi des marges et au pilotage budgétaire.
+                </p>
+
+                <!-- Carte intermédiaire Certification -->
+                <div class="bg-navy-card/80 border border-slate-700/80 rounded-xl p-3.5 flex items-center justify-between backdrop-blur-md shadow-inner">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-slate-800/80 border border-slate-600 flex items-center justify-center text-amber-400">
+                            <i class="fa-solid fa-industry text-sm"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-100">Complexe Industriel Certifié</h4>
+                            <p class="text-[10px] text-slate-400">Normes Internationales IFS & ISO 22000</p>
+                        </div>
+                    </div>
+                    <span class="border border-gold/50 text-gold text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/10">
+                        PROD 2026
+                    </span>
+                </div>
+            </div>
+
+            <!-- PIED DU PANNEAU GAUCHE -->
+            <div class="relative z-10 flex items-center space-x-2 text-xs text-slate-400 pt-4 border-t border-slate-800/80">
+                <div class="w-6 h-6 rounded-full border border-gold/40 flex items-center justify-center text-gold bg-gold/5">
+                    <i class="fa-solid fa-shield-halved text-xs"></i>
+                </div>
+                <span class="text-[11px] text-slate-300 font-medium">Accès Exécutif Sécurisé — Direction Générale</span>
+            </div>
+
+        </div>
+
+
+        <!-- ========================================== -->
+        <!-- 2. PANNEAU DROIT : MODULES (60% WIDTH)    -->
+        <!-- ========================================== -->
+        <div class="w-[60%] h-full grid-bg flex flex-col justify-between p-7 text-slate-800 relative">
+
+            <!-- EN-TÊTE DU PANNEAU DROIT : STATUS & WORKSPACE -->
+            <div class="flex items-center justify-between">
+                <!-- Status Synchro -->
+                <div class="flex items-center space-x-2 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full border border-slate-200 shadow-sm text-xs">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-slate-600 font-medium">Données à jour : <strong class="text-slate-800 font-semibold">22/09/2026</strong></span>
+                    <span class="bg-emerald-100 text-emerald-800 font-bold text-[9px] px-2 py-0.5 rounded-full ml-1">SYNC LIVE</span>
+                </div>
+
+                <!-- Badge CFO Workspace -->
+                <div class="bg-navy-dark text-white px-4 py-1.5 rounded-full text-xs font-medium flex items-center space-x-2 shadow-sm border border-slate-700">
+                    <i class="fa-solid fa-user-tie text-amber-400 text-xs"></i>
+                    <span>CFO Workspace</span>
+                    <span class="text-amber-400 font-bold">•</span>
+                    <span class="text-slate-300">Direction Financière</span>
+                </div>
+            </div>
+
+            <!-- TITRE DE LA SECTION -->
+            <div class="mt-6 mb-2 flex items-end justify-between">
+                <div>
+                    <h2 class="text-xl font-extrabold text-navy-dark tracking-tight flex items-center space-x-2">
+                        <span>Modules d'Analyse</span>
+                        <span class="w-2 h-2 rounded-full bg-gold inline-block"></span>
+                    </h2>
+                    <p class="text-xs text-slate-500 font-medium mt-0.5">Sélectionnez un espace de travail pour ouvrir le rapport analytique</p>
+                </div>
+            </div>
+
+            <!-- GRILLE DES MODULES -->
+            <div class="space-y-3.5 my-auto">
+
+                <!-- 1. MODULE ACTIF : VENTES (GRAND BLOC BLEU MARINE) -->
+                <div id="active-module-card" 
+                     onclick="handleModuleClick('1. Performance des Ventes')"
+                     class="bg-navy-dark border-2 border-gold rounded-xl p-5 text-white shadow-xl relative cursor-pointer card-active-hover">
+                    
+                    <!-- Ligne 1 : En-tête de la carte -->
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center space-x-3.5">
+                            <div class="w-10 h-10 rounded-lg bg-navy-card border border-gold-subtle flex items-center justify-center text-gold shadow-inner">
+                                <i class="fa-solid fa-chart-line text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-base text-white tracking-wide">1. Performance des Ventes</h3>
+                                <p class="text-[10px] text-gold font-bold tracking-widest uppercase">MODULE CLÔTURE & PILOTAGE COMMERCIAL</p>
+                            </div>
+                        </div>
+
+                        <span class="btn-gold-pbi text-navy-dark font-extrabold text-[10px] px-3 py-1 rounded-md uppercase tracking-wider shadow">
+                            MODULE ACTIF
+                        </span>
+                    </div>
+
+                    <!-- Ligne 2 : Description du module -->
+                    <p class="text-xs text-slate-300 mt-3 leading-relaxed">
+                        Analyse mensuelle HT & TTC par circuit de distribution (GROS, GMS, Export), suivi des volumétries et palmarès clients.
+                    </p>
+
+                    <!-- Ligne 3 : Pied du module actif (SANS BOUTON) -->
+                    <div class="mt-4 pt-3 border-t border-slate-700/70 flex items-center justify-start text-xs">
+                        <div class="flex items-center space-x-2 text-slate-300 text-[11px]">
+                            <i class="fa-regular fa-circle-check text-emerald-400"></i>
+                            <span>Données consolidées</span>
+                            <span class="text-slate-500">•</span>
+                            <span class="text-slate-200 font-medium">3 Circuits Analysés</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- PIED DE PAGE BAS DROIT -->
+            <div class="flex items-center justify-between text-[11px] text-slate-400 pt-3 border-t border-slate-200/80">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-chart-column text-slate-400 text-xs"></i>
+                    <span class="font-semibold text-slate-600">Power BI Executive Report — BK FOOD v3.2</span>
+                </div>
+                <div class="flex items-center space-x-1.5 text-slate-500 font-medium">
+                    <i class="fa-solid fa-lock text-slate-400 text-[10px]"></i>
+                    <span>Document Confidentiel — Direction Financière</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- NOTIFICATION INTERACTIVE EN CAS DE CLIC -->
+    <div id="toast-notification" 
+         class="fixed bottom-6 right-6 bg-navy-dark text-white border border-gold px-5 py-3 rounded-xl shadow-2xl transition-all duration-300 opacity-0 transform translate-y-10 pointer-events-none flex items-center space-x-3.5 z-50">
+        <div class="w-9 h-9 rounded-lg bg-amber-500/20 border border-gold/40 flex items-center justify-center text-gold">
+            <i class="fa-solid fa-arrow-right-to-bracket text-sm"></i>
+        </div>
+        <div>
+            <p class="font-bold text-xs text-gold">Action Power BI Bookmark</p>
+            <p class="text-xs text-slate-200">Ouverture du rapport : <span id="toast-module-title" class="font-bold text-white"></span></p>
+        </div>
+    </div>
+
+    <script>
+        function handleModuleClick(moduleName) {
+            const toast = document.getElementById('toast-notification');
+            const titleSpan = document.getElementById('toast-module-title');
+            
+            titleSpan.innerText = moduleName;
+            toast.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+            
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
